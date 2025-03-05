@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct ResumeView: View {
+    let fileUrl = Bundle.main.url(forResource: "IOS Development Interview Question", withExtension: "pdf")!
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        PDFKitView(url: fileUrl)
+            .edgesIgnoringSafeArea(.all)
     }
 }
 

@@ -6,13 +6,37 @@
 //
 
 import SwiftUI
+import PDFKit
 
 struct PDFKitView: View {
+    var url : URL
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        PDfKitRepresntableView(url)
     }
 }
 
+
+struct PDfKitRepresntableView : UIViewRepresentable {
+    
+    let url: URL
+       init(_ url: URL) {
+           self.url = url
+       }
+
+       func makeUIView(context: UIViewRepresentableContext<PDfKitRepresntableView>) -> PDfKitRepresntableView.UIViewType {
+           let pdfView = PDFView()
+           pdfView.document = PDFDocument(url: self.url)
+           pdfView.autoScales = true
+           return pdfView
+       }
+
+       func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<PDfKitRepresntableView>) {
+           // Update the view.
+       }
+    
+}
+
 #Preview {
-    PDFKitView()
+    PDFKitView(url: Bundle.main.url(forResource: "IOS Development Interview Question", withExtension: "pdf")!)
 }
